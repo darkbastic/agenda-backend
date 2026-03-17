@@ -72,28 +72,31 @@ class TerrenosController:
         }, 201
     
     def delete_terreno(id):
-
+    
         conn = get_connection()
         cursor = conn.cursor()
+    
         cursor.execute("""
             DELETE FROM terrenos
             WHERE id = %s
             RETURNING id
-        """,(id,))
-
+        """, (id,))
+    
         deleted = cursor.fetchone()
+    
         if not deleted:
             cursor.close()
             conn.close()
-            return {"error", "Terreno no encontrado"}
-        
+            return {"error": "Terreno no encontrado"}
+    
         conn.commit()
         cursor.close()
         conn.close()
+    
         return {
             "id": deleted[0]
         }
-
+    
     def update_terreno(self, id, data):
     
         if not data.get("fecha"):
