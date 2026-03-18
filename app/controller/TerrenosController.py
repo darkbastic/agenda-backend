@@ -71,7 +71,7 @@ class TerrenosController:
             "direccion": data["direccion"]
         }, 201
     
-    def delete_terreno(id):
+    def delete_terreno(self, id):
     
         conn = get_connection()
         cursor = conn.cursor()

@@ -28,6 +28,7 @@ def eliminar_terreno(id):
     resultado = controller.delete_terreno(id)
     if "error" in resultado:
         return resultado, 400
+        
     return {
         "mensaje":"Salida a terreno eliminada",
         "data":resultado
