@@ -41,7 +41,7 @@ class EstudioController:
         cursor = conn.cursor()         
 
         cursor.execute("""
-            SELECT id, fecha, asignatura, contenido
+            SELECT id, fecha, asignatura, contenido, completado
             FROM estudio
             ORDER BY fecha asc
         """)
@@ -54,7 +54,8 @@ class EstudioController:
                 "id": row[0],
                 "fecha": row[1],
                 "asignatura": row[2],
-                "contenido": row[3]
+                "contenido": row[3],
+                "completado": row[4]
             } 
             estudios.append(estudio)
         
@@ -72,7 +73,7 @@ class EstudioController:
         cursor = conn.cursor()
 
         cursor.execute("""
-            SELECT id, fecha, asignatura, contenido
+            SELECT id, fecha, asignatura, contenido, completado
             FROM estudio
             WHERE fecha BETWEEN %s AND %s::date + INTERVAL '6 days'
             ORDER BY fecha ASC     
@@ -86,7 +87,8 @@ class EstudioController:
                 "id": row[0],
                 "fecha": row[1],
                 "asignatura": row[2],
-                "contenido": row[3]
+                "contenido": row[3],
+                "completado": row[4]
             } 
             estudios.append(estudio)
 
