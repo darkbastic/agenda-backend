@@ -134,9 +134,9 @@ class PruebasController:
         cursor = conn.cursor()
 
         cursor.execute("""
-                DELETE FROM pruebas
-                WHERE id = %s
-                RETURNING id     
+            DELETE FROM pruebas
+            WHERE id = %s
+            RETURNING id     
         """, (id,))
 
         deleted = cursor.fetchone()

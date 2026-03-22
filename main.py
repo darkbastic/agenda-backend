@@ -5,6 +5,7 @@ from app.routes.eventos_routes import eventos_bp
 from app.routes.dashboard_routes import dashboard_bp
 from app.routes.controles_routes import controles_bp
 from app.routes.terrenos_routes import terrenos_bp
+from app.routes.estudio_routes import estudio_bp
 import os
 
 app = Flask(__name__)
@@ -15,6 +16,7 @@ app.register_blueprint(eventos_bp)
 app.register_blueprint(dashboard_bp)
 app.register_blueprint(controles_bp)
 app.register_blueprint(terrenos_bp)
+app.register_blueprint(estudio_bp)
     
 @app.route("/")
 def home():
