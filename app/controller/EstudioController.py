@@ -162,4 +162,30 @@ class EstudioController:
         
         return {
             "id": deleted[0]
-        }          
+        }
+    
+    def updated_estado(self, id):
+        conn = get_connection()
+        cursor = conn.cursor()
+    
+        cursor.execute("""
+            UPDATE estudio 
+            SET completado = NOT completado
+            WHERE id = %s
+            RETURNING id, completado
+        """, (id,))
+    
+        updated = cursor.fetchone()
+        if not updated:
+            cursor.close()
+            conn.close()
+            return {"error": "Estudio no encontrada"}        
+    
+        conn.commit()
+        cursor.close()
+        conn.close()
+    
+        return {
+            "id": updated[0],
+            "completado": updated[1]
+        }

@@ -57,3 +57,13 @@ def eliminar_estudio(id):
         "mensaje": "Estudio eliminado",
         "data": resultado
     }, 200
+
+@estudio_bp.route("/estudio/estado/<int:id>", methods=["PUT"])
+def cambiar_estado(id):
+    resultado = controller.updated_estado(id)
+    if "error" in resultado:
+        return resultado, 400
+    return{
+        "mensaje": "estado modificado",
+        "data": resultado
+    }, 200
